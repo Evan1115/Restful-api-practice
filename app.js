@@ -7,8 +7,9 @@ require('dotenv/config');
 
 
 //middleware
+app.use(bodyParser.json());
 app.use("/items", itemRoute);
-app.use(bodyParser.json())
+
 
 
 //connect to mongodb

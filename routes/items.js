@@ -8,17 +8,20 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", async (req, res) => {
+    const item = new Item({
+        id: req.body.id,
+        name: req.body.name,
+        price: req.body.price,
+        code: req.body.code
+    });
+
     try {
-        const item = new Item({
-            id: req.body.id,
-            name: req.body.name,
-            price: req.body.price,
-            code: req.body.code
-        });
+        const savedItem = await item.save()
+        res.json(savedItem)
     } catch (err) {
         res.json(err)
     }
-})
+});
 
 
 
