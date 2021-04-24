@@ -3,9 +3,14 @@ const router = express.Router();
 const Item = require("../models/Item")
 
 
-router.get("/", (req, res) => {
-    res.send("hellooll")
-})
+router.get("/", async (req, res) => {
+    try {
+        const items = await Item.find();
+        res.json(items);
+    } catch (err) {
+        res.json(err);
+    }
+});
 
 router.post("/", async (req, res) => {
     const item = new Item({
@@ -22,6 +27,17 @@ router.post("/", async (req, res) => {
         res.json(err)
     }
 });
+
+//specific route
+router.get("/:itemId", async (req, res) => {
+    try {
+        const query = { "id": req.params.itemId };
+        const item = await Item.findOne(query)
+        res.json(item)
+    } catch (err) {
+        res.json(err)
+    }
+})
 
 
 
