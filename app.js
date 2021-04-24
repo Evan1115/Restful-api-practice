@@ -10,9 +10,7 @@ require('dotenv/config');
 app.use(bodyParser.json());
 app.use("/items", itemRoute);
 
-app.get("/discount/all", (req, res) => {
-    res.send("hello")
-})
+
 
 //connect to mongodb
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
